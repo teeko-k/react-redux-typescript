@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { TodoAction } from '../reducers/todos';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const AddTodoForm: React.FC = () => {
   const [content, SetContent] = useState('');
@@ -25,7 +27,9 @@ const AddTodoForm: React.FC = () => {
         value={content}
         onChange={handleChange}
       />
-      <AddTodoButton type="submit">Add</AddTodoButton>
+      <AddTodoButton type="submit">
+        <FontAwesomeIcon icon={faPlus} /> &nbsp; Add
+      </AddTodoButton>
     </AddTodoFormContainer>
   );
 };
@@ -41,9 +45,9 @@ const AddTodoInput = styled.input`
   border: none;
   border: 1px solid #e0e0e0;
   border-radius: 5px;
-  flex: 2;
   padding: 10px 15px;
   margin-right: 10px;
+  flex: 5;
 `;
 
 const AddTodoButton = styled.button`

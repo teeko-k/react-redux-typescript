@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { TodoType, TodoAction } from '../reducers/todos';
 import UpdateTodoForm from './UpdateTodoForm';
 
@@ -39,14 +41,20 @@ const Todo: React.FC<TodoProps> = ({ todo }) => {
         <TodoContainer>
           <TodoContent completed={complete}>{content}</TodoContent>
           <TodoActions>
-            <TodoUpdate onClick={handleUpdate}>update</TodoUpdate>
-            <TodoRemove onClick={handleRemove}>delete</TodoRemove>
+            <TodoUpdate onClick={handleUpdate}>
+              <FontAwesomeIcon icon={faEdit} title="update" />
+            </TodoUpdate>
+            <TodoRemove onClick={handleRemove}>
+              <FontAwesomeIcon icon={faTrashAlt} title="delete" />
+            </TodoRemove>
           </TodoActions>
         </TodoContainer>
       )}
     </TodoListItem>
   );
 };
+
+// Styled Components
 
 const TodoListItem = styled.li`
   border-bottom: 1px solid #e0e0e0;
@@ -75,21 +83,22 @@ const TodoActions = styled.div`
 `;
 
 const TodoButton = styled.button`
+  background: none;
   border: none;
   border-radius: 5px;
-  padding: 0 10px;
-  color: #fff;
+  /* padding: 0 10px; */
+  /* color: #fff; */
   cursor: pointer;
-  font-size: 0.75rem;
+  /* font-size: 1rem; */
 `;
 
 const TodoUpdate = styled(TodoButton)`
-  background-color: #1a6c9b;
+  color: #1a6c9b;
   margin-right: 5px;
 `;
 
 const TodoRemove = styled(TodoButton)`
-  background-color: #9b1a1a;
+  color: #9b1a1a;
 `;
 
 export default Todo;
