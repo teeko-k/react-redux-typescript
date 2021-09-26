@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 export interface TodoType {
   id: number;
   content: string;
@@ -12,6 +13,11 @@ export type TodoAction =
     }
   | {
       type: 'DELETE_TODO';
+      id: number;
+    }
+  | {
+      type: 'UPDATE_TODO';
+      payload: string;
       id: number;
     };
 
@@ -32,6 +38,13 @@ export const todos: TodosReducer = (state = [], action) => {
       ];
     case 'DELETE_TODO':
       return state.filter((todo) => todo.id !== action.id);
+    case 'UPDATE_TODO':
+      state.map((todo) => {
+        if (todo.id === action.id) {
+          todo.content = action.payload;
+        }
+      });
+      return state;
     default:
       return state;
   }
